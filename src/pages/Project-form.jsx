@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 function ProjectForm() {
   const [formData, setFormData] = useState({
-    project_name: '',
-    launchDate: '',
-    launchTime: '',
-    status: '',
-    expiryDate: '',
-    expiryTime: '',
-    projectDuration: '',
-    description: '',
-    requirements: '',
+    project_name: "",
+    launchDate: "",
+    launchTime: "",
+    status: "",
+    expiryDate: "",
+    expiryTime: "",
+    projectDuration: "",
+    description: "",
+    requirements: "",
   });
 
-  const [responseMessage, setResponseMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,24 +30,35 @@ function ProjectForm() {
     console.log(formData);
 
     try {
-      const response = await axios.post('http://localhost:3000/projectRoutes/createProject', formData);
-      setResponseMessage(response.data.message || 'Form submitted successfully!');
-      setErrorMessage('');
+      const response = await axios.post(
+        "http://localhost:3000/projectRoutes/createProject",
+        formData,
+        {
+          headers: {
+            authorization: sessionStorage.getItem("authorization"),
+          },
+        }
+      );
+      console.log(formData);
+      setResponseMessage(
+        response.data.message || "Form submitted successfully!"
+      );
+      setErrorMessage("");
       setFormData({
-        project_name: '',
-        launchDate: '',
-        launchTime: '',
-        status: '',
-        expiryDate: '',
-        expiryTime: '',
-        projectDuration: '',
-        description: '',
-        requirements: '',
+        project_name: "",
+        launchDate: "",
+        launchTime: "",
+        status: "",
+        expiryDate: "",
+        expiryTime: "",
+        projectDuration: "",
+        description: "",
+        requirements: "",
       });
     } catch (error) {
-      console.error('Error submitting form:', error.response.data);
-      setResponseMessage('');
-      setErrorMessage('Error submitting form. Please try again.');
+      console.error("Error submitting form:", error.response.data);
+      setResponseMessage("");
+      setErrorMessage("Error submitting form. Please try again.");
     }
   };
 
@@ -57,7 +68,12 @@ function ProjectForm() {
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="mb-4">
-            <label htmlFor="project_name" className="block text-gray-700 font-bold mb-2">Project Name</label>
+            <label
+              htmlFor="project_name"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Project Name
+            </label>
             <input
               type="text"
               id="project_name"
@@ -70,7 +86,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="launchDate" className="block text-gray-700 font-bold mb-2">Launch Date</label>
+            <label
+              htmlFor="launchDate"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Launch Date
+            </label>
             <input
               type="date"
               id="launchDate"
@@ -83,7 +104,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="launchTime" className="block text-gray-700 font-bold mb-2">Launch Time</label>
+            <label
+              htmlFor="launchTime"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Launch Time
+            </label>
             <input
               type="time"
               id="launchTime"
@@ -96,7 +122,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="status" className="block text-gray-700 font-bold mb-2">Status</label>
+            <label
+              htmlFor="status"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Status
+            </label>
             <select
               id="status"
               name="status"
@@ -113,7 +144,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="expiryDate" className="block text-gray-700 font-bold mb-2">Expiry Date</label>
+            <label
+              htmlFor="expiryDate"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Expiry Date
+            </label>
             <input
               type="date"
               id="expiryDate"
@@ -126,7 +162,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="expiryTime" className="block text-gray-700 font-bold mb-2">Expiry Time</label>
+            <label
+              htmlFor="expiryTime"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Expiry Time
+            </label>
             <input
               type="time"
               id="expiryTime"
@@ -139,7 +180,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="projectDuration" className="block text-gray-700 font-bold mb-2">Project Duration</label>
+            <label
+              htmlFor="projectDuration"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Project Duration
+            </label>
             <input
               type="text"
               id="projectDuration"
@@ -152,7 +198,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4 col-span-2">
-            <label htmlFor="description" className="block text-gray-700 font-bold mb-2">Description</label>
+            <label
+              htmlFor="description"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Description
+            </label>
             <textarea
               id="description"
               name="description"
@@ -165,7 +216,12 @@ function ProjectForm() {
           </div>
 
           <div className="mb-4 col-span-2">
-            <label htmlFor="requirements" className="block text-gray-700 font-bold mb-2">Requirements</label>
+            <label
+              htmlFor="requirements"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Requirements
+            </label>
             <textarea
               id="requirements"
               name="requirements"

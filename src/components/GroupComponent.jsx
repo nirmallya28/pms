@@ -1,19 +1,24 @@
-import { useMemo } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 
-const GroupComponent = ({ className = "", propFlex, propAlignSelf }) => {
-  const groupDivStyle = useMemo(() => {
-    return {
-      flex: propFlex,
-      alignSelf: propAlignSelf,
-    };
-  }, [propFlex, propAlignSelf]);
+import ProjectDescription from './ProjectDescription';
+import Tags from './tags';
+import Faculties from './faculties';
+
+const GroupComponent = ({ className = "", propFlex, propAlignSelf, project }) => {
+  const { project_name, description, faculty_list } = project;
+
+  const groupDivStyle = useMemo(() => ({
+    flex: propFlex,
+    alignSelf: propAlignSelf,
+  }), [propFlex, propAlignSelf]);
 
   return (
     <div
-      className={`flex-1 rounded-smi bg-white flex flex-row flex-wrap items-end justify-start py-[41px] px-8 box-border relative gap-[20px] max-w-full text-left text-17xl text-black font-inter ${className}`}
+      className={`group-component flex-1 rounded-smi bg-white flex flex-row flex-wrap items-end justify-start py-[41px] px-8 box-border relative gap-[20px] max-w-full text-left text-17xl text-black font-inter ${className}`}
       style={groupDivStyle}
     >
+      {/* Static content */}
       <img
         className="h-14 w-14 absolute !m-[0] top-[-28px] right-[-24px] object-contain z-[3]"
         loading="lazy"
@@ -26,94 +31,104 @@ const GroupComponent = ({ className = "", propFlex, propAlignSelf }) => {
           +
         </h1>
       </div>
-      <div className="h-[307px] w-[1740px] relative rounded-smi bg-white hidden max-w-full z-[1]" />
-      <div className="h-[225px] w-[397px] flex flex-col items-start justify-start py-0 pr-[17px] pl-0 box-border max-w-full">
-        <img
-          className="self-stretch flex-1 relative rounded-2xs max-w-full overflow-hidden max-h-full object-cover z-[1]"
-          loading="lazy"
-          alt=""
-          src="/rectangle-169@2x.png"
-        />
-      </div>
-      <div className="flex-1 flex flex-row items-end justify-start gap-[35px] min-w-[629px] max-w-full mq900:gap-[17px] mq1275:flex-wrap mq1275:min-w-full">
-        <div className="flex-1 flex flex-col items-start justify-start gap-[14px] min-w-[417px] max-w-full mq900:min-w-full">
-          <h1 className="m-0 relative text-inherit font-semibold font-inherit inline-block min-w-[124px] z-[1] mq900:text-10xl mq450:text-3xl">
-            Project
-          </h1>
-          <div className="self-stretch rounded-smi bg-lavender flex flex-row items-start justify-center py-14 pr-5 pl-[21px] box-border max-w-full z-[1]">
-            <div className="h-[156px] w-[641px] relative rounded-smi bg-lavender hidden max-w-full" />
-            <h1 className="m-0 relative text-inherit font-semibold font-inherit z-[2] mq900:text-10xl mq450:text-3xl">
-              Project Description
-            </h1>
-          </div>
-        </div>
-        <div className="h-[223px] w-[291px] flex flex-col items-start justify-start gap-[23px] min-w-[291px] mq1275:flex-1">
-          <h1 className="m-0 relative text-inherit font-semibold font-inherit inline-block min-w-[85px] z-[1] mq900:text-10xl mq450:text-3xl">
-            Tags
-          </h1>
-          <div className="self-stretch flex-1 rounded-3xs bg-lavender overflow-x-auto flex flex-row items-start justify-start py-5 px-[23px] gap-[9px] z-[1] text-3xs text-white">
-            <div className="h-[156px] w-[291px] relative rounded-3xs bg-lavender shrink-0 hidden" />
-            <div className="rounded bg-royalblue-100 flex flex-row items-start justify-start pt-0.5 px-2.5 pb-[3px] z-[2]">
-              <div className="h-[17px] w-[54px] relative rounded bg-royalblue-100 hidden" />
-              <div className="relative inline-block min-w-[34px] z-[1]">
-                Python
-              </div>
-            </div>
-            <div className="w-9 rounded bg-royalblue-100 shrink-0 flex flex-row items-start justify-start pt-[3px] px-2.5 pb-0.5 box-border z-[2]">
-              <div className="h-[17px] w-9 relative rounded bg-royalblue-100 hidden" />
-              <div className="relative inline-block min-w-[15px] z-[1]">ML</div>
-            </div>
-            <div className="rounded bg-royalblue-100 flex flex-row items-start justify-start pt-[3px] px-[13px] pb-0.5 z-[2]">
-              <div className="h-[17px] w-9 relative rounded bg-royalblue-100 hidden" />
-              <div className="relative inline-block min-w-[10px] z-[1]">AI</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col items-start justify-start gap-[25px]">
-        <div className="flex flex-row items-start justify-start py-0 px-[9px]">
-          <h1 className="m-0 relative text-inherit font-semibold font-inherit z-[1] mq900:text-10xl mq450:text-3xl">
-            Faculties
-          </h1>
-        </div>
-        <div className="rounded-3xs bg-lavender flex flex-row items-start justify-center py-5 pr-5 pl-[21px] box-border gap-[19.7px] min-h-[156px] z-[1] mq450:flex-wrap">
-          <div className="h-[156px] w-[268px] relative rounded-3xs bg-lavender hidden" />
-          <img
-            className="h-[42px] w-[42px] relative rounded-[50%] object-contain z-[2]"
-            loading="lazy"
-            alt=""
-            src="/ellipse-16@2x.png"
-          />
-          <img
-            className="h-[42px] w-[42px] relative rounded-[50%] object-contain z-[2]"
-            loading="lazy"
-            alt=""
-            src="/ellipse-16@2x.png"
-          />
-          <img
-            className="h-[42px] w-[42px] relative rounded-[50%] object-contain z-[2]"
-            loading="lazy"
-            alt=""
-            src="/ellipse-16@2x.png"
-          />
-          <img
-            className="h-[42px] w-[42px] relative rounded-[50%] object-contain z-[2]"
-            loading="lazy"
-            alt=""
-            src="/ellipse-16@2x.png"
-          />
-        </div>
-      </div>
+
+      {/* Dynamic content */}
+      <ProjectDescription description={description} />
+      <Tags tags={[]} />
+      <Faculties faculties={faculty_list} />
     </div>
   );
 };
 
 GroupComponent.propTypes = {
   className: PropTypes.string,
+  propFlex: PropTypes.any,
+  propAlignSelf: PropTypes.any,
+  project: PropTypes.shape({
+    project_name: PropTypes.string,
+    description: PropTypes.string,
+    faculty_list: PropTypes.array
+  }).isRequired
+};
 
-  /** Style props */
+const GroupComponentsContainer = ({ className = "", propFlex, propAlignSelf }) => {
+  const [projects, setProjects] = useState([]);
+  const [fetchError, setFetchError] = useState(null);
+
+  const authToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2OWExNmZjOGU2Y2JmY2UwMDViOTc5ZSJ9LCJpYXQiOjE3MjE5NzQxMDEsImV4cCI6MTcyMjAxNzMwMX0.PUvCbIpDDAxyuLCS2kb3mZ7j9_4VIwHU_jl_6NGLrZo';
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/projectRoutes/getProjects', {
+          headers: {
+            Authorization: authToken
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log('Fetched data:', data); // Log the data to see its structure
+        if (Array.isArray(data)) {
+          setProjects(data);
+        } else {
+          throw new Error('Data structure is not as expected');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setFetchError(error.message);
+      }
+    };
+
+    fetchData();
+  }, [authToken]);
+
+  const groupDivStyle = useMemo(() => ({
+    flex: propFlex,
+    alignSelf: propAlignSelf,
+  }), [propFlex, propAlignSelf]);
+
+  const ensureMinimumProjects = (projects) => {
+    const minimumProjects = 2;
+    if (projects.length < minimumProjects) {
+      const dummyProjects = Array.from({ length: minimumProjects - projects.length }, (_, index) => ({
+        project_name: `Dummy Project ${index + 1}`,
+        description: `Dummy project description ${index + 1}`,
+        faculty_list: [`Dummy Faculty ${index + 1}`]
+      }));
+      return [...projects, ...dummyProjects];
+    }
+    return projects;
+  };
+
+  const displayedProjects = ensureMinimumProjects(projects);
+
+  return (
+    <div className={className} style={groupDivStyle}>
+      {fetchError ? (
+        <div className="error-message text-red-500">{fetchError}</div>
+      ) : (
+        displayedProjects.map((project, index) => (
+          <GroupComponent
+            key={index}
+            className={className}
+            propFlex={propFlex}
+            propAlignSelf={propAlignSelf}
+            project={project}
+          />
+        ))
+      )}
+    </div>
+  );
+};
+
+GroupComponentsContainer.propTypes = {
+  className: PropTypes.string,
   propFlex: PropTypes.any,
   propAlignSelf: PropTypes.any,
 };
 
-export default GroupComponent;
+export default GroupComponentsContainer;

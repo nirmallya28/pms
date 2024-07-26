@@ -14,7 +14,7 @@ const AdminDashboard = () => {
         <div className="h-[]w-[220px] flex flex-row items-end justify-start gap-[38px] text-sm">
           
               
-          <button class="w-[187px]bg-transparant-100  hover:bg-sky-700 ... border-[1px] border-solid border-royalblue-200
+          <button className="w-[187px]bg-transparant-100  hover:bg-sky-700 ... border-[1px] border-solid border-royalblue-200
 
              top-[0px] left-[0px] relative rounded-6xs w-full h-full cursor-pointer z-[1]">
                Admin
