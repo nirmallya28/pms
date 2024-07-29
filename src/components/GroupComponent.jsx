@@ -55,7 +55,7 @@ const GroupComponentsContainer = ({ className = "", propFlex, propAlignSelf }) =
   const [projects, setProjects] = useState([]);
   const [fetchError, setFetchError] = useState(null);
 
-  const authToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2OWExNmZjOGU2Y2JmY2UwMDViOTc5ZSJ9LCJpYXQiOjE3MjE5NzQxMDEsImV4cCI6MTcyMjAxNzMwMX0.PUvCbIpDDAxyuLCS2kb3mZ7j9_4VIwHU_jl_6NGLrZo';
+  const authToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2OWExNmZjOGU2Y2JmY2UwMDViOTc5ZSJ9LCJpYXQiOjE3MjIyNTQ0NDMsImV4cCI6MTcyMjI1OTg0M30.s4mjhH-yqycygz2ZgmH8AkixneQ_j3l9fdvuyCLJaic';
 
   useEffect(() => {
     const fetchData = async () => {

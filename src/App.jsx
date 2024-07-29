@@ -8,7 +8,7 @@ import {
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminDashboard1 from "./pages/AdminDashboard1";
 import ProjectForm from "./pages/Project-form";
-
+import StudentDashboard from "./pages/StudentDashboard";
 
 function App() {
   const action = useNavigationType();
@@ -55,6 +55,7 @@ function App() {
       <Route path="/" element={<AdminDashboard />} />
       <Route path="/admin-dashboard" element={<AdminDashboard1 />} />
       <Route path="/Project-form" element={<ProjectForm />} />
+      <Route path="/student-dashboard" element={<StudentDashboard/>}/>
     </Routes>
   );
 }
